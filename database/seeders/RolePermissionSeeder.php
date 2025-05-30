@@ -3,30 +3,34 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-// Import model Role dan Permission dari Spatie
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
 class RolePermissionSeeder extends Seeder
 {
     /**
-     * Method ini dijalankan saat kamu jalankan 'php artisan db:seed'
-     * Di sini kita buat role, permission, dan assign permission ke role
+     * Seeder ini akan membuat role dan permission dasar untuk aplikasi.
      */
     public function run()
     {
-        // Membuat role 'admin', jika sudah ada maka ambil data yang sudah ada (firstOrCreate)
+        // Membuat role 'admin' jika belum ada
         $adminRole = Role::firstOrCreate(['name' => 'admin']);
-        
-        // Membuat role 'user'
+
+        // Membuat role 'ustadz' jika belum ada
+        $ustadzRole = Role::firstOrCreate(['name' => 'ustadz']);
+
+        // Membuat role 'user' jika belum ada
         $userRole = Role::firstOrCreate(['name' => 'user']);
 
-        // Membuat permission 'manage users'
+        // Contoh permission: 'manage users'
         $manageUsersPermission = Permission::firstOrCreate(['name' => 'manage users']);
 
-        // Memberikan permission 'manage users' ke role 'admin'
+        // Assign permission 'manage users' ke admin saja
         $adminRole->givePermissionTo($manageUsersPermission);
 
-        // Bisa tambah role dan permission lain di sini jika perlu
+        // Kamu bisa menambahkan lebih banyak permission lain seperti:
+        // $createPost = Permission::firstOrCreate(['name' => 'create post']);
+        // $ustadzRole->givePermissionTo($createPost);
+        // $userRole->givePermissionTo('view post');
     }
 }
