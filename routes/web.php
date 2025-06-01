@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,8 @@ Route::middleware(['auth'])->group(function () {
     // Saat user login dan buka /dashboard, cek rolenya dan tampilkan view sesuai
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+
 
 
 require __DIR__.'/auth.php';
