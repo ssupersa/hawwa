@@ -25,6 +25,7 @@ class MateriController extends Controller
             $materi = Materi::where('status', 'diverifikasi')->get();
             return view('user.materi.index', compact('materi'));
         }
+        
 
         abort(403); // akses ditolak
     }
