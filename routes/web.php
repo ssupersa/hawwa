@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\MateriController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +39,21 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+
+
+Route::middleware(['auth', 'checkRole:admin'])->group(function () {
+    Route::get('/admin/materi', [MateriController::class, 'adminIndex'])->name('admin.materi.index');
+    Route::post('/admin/materi/{id}/verifikasi', [MateriController::class, 'verifikasi'])->name('admin.materi.verifikasi');
+});
+
+Route::get('/materi', [MateriController::class, 'index'])->middleware('checkRole:admin,ustadz,user');
+Route::get('/admin/materi', [MateriController::class, 'index'])
+    ->middleware(['auth', 'role:admin']);
+
+// Khusus Admin
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/admin/materi', [MateriController::class, 'index'])->name('admin.materi.index');
+});
 
 
 
