@@ -6,7 +6,6 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\MateriController;
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,39 +21,36 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware(['auth', 'verified'])->group(function () {
+    // Dashboard
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
+    // Profile routes
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // Logout
+    Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 });
 
-
-
-Route::middleware(['auth'])->group(function () {
-    // Saat user login dan buka /dashboard, cek rolenya dan tampilkan view sesuai
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-});
-Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
-
-
-Route::middleware(['auth', 'checkRole:admin'])->group(function () {
+// Routes khusus Admin
+Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/materi', [MateriController::class, 'adminIndex'])->name('admin.materi.index');
     Route::post('/admin/materi/{id}/verifikasi', [MateriController::class, 'verifikasi'])->name('admin.materi.verifikasi');
+
+    // Jika ada route materi index admin juga bisa di sini
+    Route::get('/admin/materi/index', [MateriController::class, 'index'])->name('admin.materi.index.alt');
 });
 
-Route::get('/materi', [MateriController::class, 'index'])->middleware('checkRole:admin,ustadz,user');
-Route::get('/admin/materi', [MateriController::class, 'index'])
-    ->middleware(['auth', 'role:admin']);
-
-// Khusus Admin
-Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/admin/materi', [MateriController::class, 'index'])->name('admin.materi.index');
+// Routes khusus Ustadz
+Route::middleware(['auth', 'role:ustadz'])->group(function () {
+    Route::get('/ustadz/materi', [MateriController::class, 'index'])->name('ustadz.materi.index');
 });
 
-
+// Routes khusus User
+Route::middleware(['auth', 'role:user'])->group(function () {
+    Route::get('/materi', [MateriController::class, 'index'])->name('user.materi.index');
+});
 
 require __DIR__.'/auth.php';
