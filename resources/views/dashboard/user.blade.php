@@ -35,7 +35,7 @@
                 {{-- <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div> --}}
-                <div class="sidebar-brand-text mx-3">Hawwa<sup></sup></div>
+                <div class="sidebar-brand-text mx-3">USER<sup></sup></div>
             </a>
 
             <!-- Divider -->
@@ -141,7 +141,9 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                    {{ auth()->user()->name }}
+                                </span>
                                 <img class="img-profile rounded-circle"
                                     src="{{asset('sb-admin/img/undraw_profile.svg')}}">
                             </a>

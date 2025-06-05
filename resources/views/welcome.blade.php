@@ -95,7 +95,8 @@
                 <div class="row align-items-start mb-5">
                 <!-- Gambar -->
                 <div class="col-lg-6" data-aos="fade-right">
-                    <img src="services.jpg" class="img-fluid" alt="Tentang Kami">
+                    <img src="hawwa.jpg" class="img-fluid rounded-circle" alt="Tentang Kami">
+
                 </div>
 
                 <!-- Teks Tentang Kami -->
@@ -158,7 +159,6 @@
                     <i class="bi bi-activity icon"></i>
                     <div>
                     <h3>Materi Kajian</h3>
-                    <p>Provident nihil minus qui consequatur non omnis maiores...</p>
                     <a href="#" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
                     </div>
                 </div>
@@ -169,7 +169,6 @@
                     <i class="bi bi-broadcast icon"></i>
                     <div>
                     <h3>Jadwal Kajian</h3>
-                    <p>Ut autem aut autem non a. Sint sint sit facilis nam iusto sint...</p>
                     <a href="#" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
                     </div>
                 </div>
@@ -180,7 +179,6 @@
                     <i class="bi bi-bounding-box-circles icon"></i>
                     <div>
                     <h3>Forum Diskusi</h3>
-                    <p>Non et temporibus minus omnis sed dolor esse consequatur...</p>
                     <a href="#" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
                     </div>
                 </div>
@@ -191,7 +189,6 @@
                     <i class="bi bi-bounding-box-circles icon"></i>
                     <div>
                     <h3>Feedback</h3>
-                    <p>Non et temporibus minus omnis sed dolor esse consequatur...</p>
                     <a href="#" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
                     </div>
                 </div>
