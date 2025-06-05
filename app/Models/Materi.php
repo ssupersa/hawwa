@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Materi extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'user_id',
+        'judul',
+        'file',
+        'tipe',
+        'status',
+    ];
 }

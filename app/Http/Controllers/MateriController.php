@@ -22,7 +22,7 @@ class MateriController extends Controller
         }
 
         if ($user->hasRole('user')) {
-            $materi = Materi::where('status', 'diverifikasi')->get();
+            $materi = Materi::where('status', 'approved')->get();
             return view('user.materi.index', compact('materi'));
         }
         
@@ -49,4 +49,16 @@ class MateriController extends Controller
 
         return redirect()->back()->with('success', 'Materi berhasil diupload.');
     }
+
+    public function verifikasi($id)
+{
+    $materi = Materi::findOrFail($id);
+
+    // Update status materi jadi 'diverifikasi'
+    $materi->status = 'approved';
+    $materi->save();
+
+    return redirect()->back()->with('success', 'Materi berhasil diverifikasi.');
+}
+
 }
