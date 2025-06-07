@@ -46,12 +46,21 @@
             <hr class="sidebar-divider">
 
             <!-- Nav Item - Materi Kajian Menu -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('ustadz.materi.index') }}">
-                    <i class="fas fa-fw fa-book"></i>
-                    <span>Materi Kajian</span>
-                </a>
-            </li>
+            <!-- Nav Item - Materi Kajian Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMateri"
+                aria-expanded="true" aria-controls="collapseMateri">
+                <i class="fas fa-fw fa-book"></i>
+                <span>Materi Kajian</span>
+            </a>
+            <div id="collapseMateri" class="collapse" aria-labelledby="headingMateri" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="{{ route('ustadz.materi.create') }}">Upload Materi</a>
+                    <a class="collapse-item" href="{{ route('ustadz.materi.index') }}">Daftar Materi</a>
+                </div>
+            </div>
+        </li>
+
 
             <!-- Nav Item - Jdwal Kajian Menu -->
             <li class="nav-item">
